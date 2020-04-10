@@ -8,9 +8,9 @@ import { Pokelistresponse } from '../views/list/pokeListResponse'
 export class PokeapiService {
 
   private url = 'http://dev.treinaweb.com.br/pokeapi/'
-  pokeList = []
+  public pokeList = []
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   listAll()
   {
@@ -22,12 +22,12 @@ export class PokeapiService {
                 })
   }
 
-  private getNumberForUrl(url)
+   getNumberForUrl(url)
   {
     return parseInt(url.replace(/.*\/(\d+)\/$/, '$1'));
   }
 
-  private sortPokemon(pokemonList)
+   sortPokemon(pokemonList)
   {
     return pokemonList.sort((a,b) => {return (a.number > b.number ? 1 : -1)})
   }

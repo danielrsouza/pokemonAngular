@@ -9,34 +9,32 @@ import { PokeapiService } from 'src/app/service/pokeapi.service';
 
 export class ListComponent implements OnInit {
 
-  public paginaAtual = 1;
-  public nameFilter = '';
+  public paginaAtual:number = 1;
+  public nameFilter:string = '';
   public selectedPkm = null;
 
+  constructor(private pokeapi: PokeapiService) {}
 
-  get pokemonList():Array<any>
-  {
-    return this.pokeapi.pokeList.filter(pokemon => {
-      return pokemon.name.indexOf(this.nameFilter) !== -1;
-    })
+  ngOnInit(): void {
+    this.pokeapi.listAll();
   }
 
+  selectPokemon(pkm)
+  {
+    this.selectedPkm = pkm
+  }
 
   get pkmSprite()
   {
     const number = ('000' + this.selectedPkm.number).slice(-3);
     return `//serebii.net/sunmoon/pokemon/${number}.png`
   }
-  
-  selectPokemon(pkm)
+
+  get pokemonList():Array<any>
   {
-    this.selectedPkm = pkm
-  }
-
-  constructor(private pokeapi: PokeapiService) {}
-
-  ngOnInit(): void {
-    this.pokeapi.listAll();
+    return this.pokeapi.pokeList.filter(pokemon => {
+      return pokemon.name.indexOf(this.nameFilter) !== -1;
+    })
   }
 
 

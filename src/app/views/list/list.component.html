@@ -7,8 +7,9 @@
         <img src="//serebii.net/pokedex-xy/icon/{{pokemon.number | number:'3.0-0'}}.png" >
         <span>{{pokemon.number | number:'3.0-0'}} - {{pokemon.name}}</span>
     </li>
+
     <br>
-       <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
+    <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
 </ul>
 
 

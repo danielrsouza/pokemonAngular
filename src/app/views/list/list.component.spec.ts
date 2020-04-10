@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListComponent } from './list.component';
+import { ListModule } from './list.module';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -8,7 +9,8 @@ describe('ListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      declarations: [ ListComponent ],
+      imports: [ListModule]
     })
     .compileComponents();
   }));
@@ -22,5 +24,7 @@ describe('ListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
 });
 
