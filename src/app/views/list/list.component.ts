@@ -10,6 +10,8 @@ export class ListComponent implements OnInit {
 
   nameFilter = '';
   selectedPkm = null;
+
+
   get pokemonList():Array<any>
   {
     return this.pokeapi.pokeList.filter(pokemon => {

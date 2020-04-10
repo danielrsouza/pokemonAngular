@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-interface PokeListResponse{
-  created: string,
-  modified: string,
-  name: string,
-  pokemon: any[],
-  resource_uri: string
-}
+import { Pokelistresponse } from '../views/list/pokeListResponse'
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +14,12 @@ export class PokeapiService {
 
   listAll()
   {
-    this.http.get<PokeListResponse>(`${this.url}/pokedex/1`)
-              .subscribe( response => {
-                response.pokemon.forEach(pokemon => {
-                  pokemon.number = this.getNumberForUrl(pokemon.resource_uri)
+    this.http.get<Pokelistresponse>(`${this.url}/pokedex/1`)
+             .subscribe(
+                response => {
+                  response.pokemon.forEach(pokemon => {pokemon.number = this.getNumberForUrl(pokemon.resource_uri)})
+                  this.pokeList = this.sortPokemon(response.pokemon).filter(pokemon => pokemon.number < 1000);
                 })
-                this.pokeList = this.sortPokemon(response.pokemon).filter(pokemon => pokemon.number < 1000);
-              })
   }
 
   private getNumberForUrl(url)
@@ -37,8 +29,6 @@ export class PokeapiService {
 
   private sortPokemon(pokemonList)
   {
-    return pokemonList.sort((a,b) => {
-      return (a.number > b.number ? 1 : -1)
-    })
+    return pokemonList.sort((a,b) => {return (a.number > b.number ? 1 : -1)})
   }
 }
