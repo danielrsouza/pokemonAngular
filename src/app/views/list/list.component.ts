@@ -9,8 +9,9 @@ import { PokeapiService } from 'src/app/service/pokeapi.service';
 
 export class ListComponent implements OnInit {
 
-  nameFilter = '';
-  selectedPkm = null;
+  public paginaAtual = 1;
+  public nameFilter = '';
+  public selectedPkm = null;
 
 
   get pokemonList():Array<any>
@@ -26,7 +27,7 @@ export class ListComponent implements OnInit {
     const number = ('000' + this.selectedPkm.number).slice(-3);
     return `//serebii.net/sunmoon/pokemon/${number}.png`
   }
-
+  
   selectPokemon(pkm)
   {
     this.selectedPkm = pkm
