@@ -6,6 +6,7 @@ import { PokeapiService } from 'src/app/service/pokeapi.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
+
 export class ListComponent implements OnInit {
 
   nameFilter = '';
@@ -26,20 +27,17 @@ export class ListComponent implements OnInit {
     return `//serebii.net/sunmoon/pokemon/${number}.png`
   }
 
-  constructor(
-    private pokeapi: PokeapiService
-  ) { 
-
-
+  selectPokemon(pkm)
+  {
+    this.selectedPkm = pkm
   }
+
+  constructor(private pokeapi: PokeapiService) {}
 
   ngOnInit(): void {
     this.pokeapi.listAll();
   }
 
-  selectPokemon(pkm)
-  {
-    this.selectedPkm = pkm
-  }
+
 
 }
